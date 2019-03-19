@@ -98,9 +98,9 @@
     \end{spacing}
     \songti\zihao{4}
     \vspace{\stretch{5}}
-        \rightline{作者签名：\qquad\qquad\qquad\enspace\enspace\qquad\qquad}
+        \rightline{作者签名：\hspace{156bp}}
     \vspace{\stretch{1}}
-        \rightline{日期：\qquad年\qquad月\qquad日\qquad\qquad}
+        \rightline{日期：\hspace{36bp}年\hspace{24bp}月\hspace{24bp}日\hspace{60bp}}
     \vspace{\stretch{3}}
     \thispagestyle{empty}
     \clearpage\mbox{}\thispagestyle{empty}\clearpage
@@ -136,7 +136,7 @@
     \vspace{\stretch{3}}
     \begin{tabular}{l@{\hskip 0.8in}l}
         作者签名：  &   指导老师签名：    \\[40bp]
-        日期：\qquad\enspace年\qquad月\qquad日    &   日期：\qquad\enspace年\qquad月\qquad日\\
+        日期：\hspace{36bp}年\hspace{24bp}月\hspace{24bp}日 &   日期：\hspace{36bp}年\hspace{24bp}月\hspace{24bp}日\\
     \end{tabular}
     \vfill
     \cleardoublepage
@@ -161,7 +161,7 @@
     \pagestyle{plain}
     \fancyfoot[C]{}
     \songti\large
-    \quad
+    \ 
 
     \hskip -1.1cm
     \begin{tabular}{l@{\hskip 0.3in}l}
@@ -287,9 +287,4 @@
         \newline\newline审\hspace{6bp}批\hspace{6bp}人：\underlinebox{4cm}{c}{}\hspace{12bp}\@taskenddate
     \end{spacing}
     \ifthispageodd{\cleardoublepage}{\clearpage}
-
-    % 摘要页
-    \chapter{摘\hspace{10pt}要}
-    \songti\large
-
 }
