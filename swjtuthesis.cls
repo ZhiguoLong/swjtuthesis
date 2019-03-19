@@ -1,7 +1,11 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{swjtuthesis}
 
-\LoadClass[UTF8, AutoFakeBold]{ctexbook}
+\LoadClass[UTF8,openany,AutoFakeBold]{ctexbook}
+% TO UPDATE, just a workaround
+\setCJKfamilyfont{zhhei}[AutoFakeBold]{SimHei}
+\setCJKfamilyfont{zhsong}[AutoFakeBold]{SimSun}
+\setmainfont{Times New Roman}
 
 \RequirePackage{array}
 \RequirePackage{zhnumber}
@@ -153,6 +157,14 @@
 \newcommand\@taskstartdate{\@latex@error{No \noexpand\taskstartdate given}\@ehc}
 \newcommand\taskenddate[1]{\renewcommand\@taskenddate {#1}}
 \newcommand\@taskenddate{\@latex@error{No \noexpand\taskenddate given}\@ehc}
+\newcommand\abstract[1]{\renewcommand\@abstract {#1}}
+\newcommand\@abstract{\@latex@error{No \noexpand\abstract given}\@ehc}
+\newcommand\keywords[1]{\renewcommand\@keywords {#1}}
+\newcommand\@keywords{\@latex@error{No \noexpand\keywords given}\@ehc}
+\newcommand\enabstract[1]{\renewcommand\@enabstract {#1}}
+\newcommand\@enabstract{\@latex@error{No \noexpand\enabstract given}\@ehc}
+\newcommand\enkeywords[1]{\renewcommand\@enkeywords {#1}}
+\newcommand\@enkeywords{\@latex@error{No \noexpand\enkeywords given}\@ehc}
 
 \newcommand{\underlinebox}[3]{
     \underline{\makebox[#1][#2]{#3}}
@@ -287,4 +299,26 @@
         \newline\newline 审\hspace{6bp}批\hspace{6bp}人：\underlinebox{4cm}{c}{}\hspace{12bp}\@taskenddate
     \end{spacing}
     \ifthispageodd{\cleardoublepage}{\clearpage}
+
+    % 摘要
+    \titleformat{\chapter}[display]
+        {\centering\heiti\LARGE}
+        {}{}{}
+    \titlespacing*{\chapter}{0pt}{-15pt}{16.06pt}
+    \chapter{摘\hspace{6bp}要}
+    \songti\large
+    \hspace*{24bp}\@abstract\\
+    \par
+    \noindent {\heiti\large 关键词：}\@keywords
+
+    % 英文摘要
+    \titleformat{\chapter}[display]
+        {\centering\LARGE}
+        {}{}{}
+    \titlespacing*{\chapter}{0pt}{-15pt}{16.06pt}
+    \chapter{Abstract}
+    \hspace*{24bp}\@enabstract\\
+    \par
+    \noindent {\large\bfseries Keywords:}\@enkeywords
+    \clearpage
 }
