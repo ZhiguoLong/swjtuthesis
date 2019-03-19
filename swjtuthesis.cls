@@ -1,7 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{swjtuthesis}
 
-\LoadClass[UTF8]{ctexbook}
+\LoadClass[UTF8, AutoFakeBold]{ctexbook}
 
 \RequirePackage{array}
 \RequirePackage{zhnumber}
