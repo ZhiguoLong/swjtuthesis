@@ -1,11 +1,15 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{swjtuthesis}
 
-\LoadClass[UTF8,openany,AutoFakeBold]{ctexbook}
+\LoadClass[UTF8,openany,zihao=-4]{ctexbook}
 % TO UPDATE, just a workaround
 \setCJKfamilyfont{zhhei}[AutoFakeBold]{SimHei}
 \setCJKfamilyfont{zhsong}[AutoFakeBold]{SimSun}
+\setCJKmainfont{SimSun}
 \setmainfont{Times New Roman}
+\setsansfont{Arial}
+\newfontfamily\arial{Arial}
+\newfontfamily\timesnewroman{Times New Roman}
 
 \RequirePackage{array}
 \RequirePackage{zhnumber}
@@ -14,7 +18,6 @@
 \RequirePackage{amssymb}
 \RequirePackage{fancyhdr}
 \RequirePackage{color}
-\RequirePackage{titlesec}
 \RequirePackage{scrextend}
 
 \geometry{a4paper,left=2.7cm,right=2.7cm,top=2.6cm,bottom=2.6cm}
@@ -26,8 +29,42 @@
 \renewcommand{\headrulewidth}{1.8pt}
 \fancypagestyle{plain}{
     \fancyhead[L]{}
-    \fancyhead[C]{\heiti\large\color[gray]{0.55}西南交通大学本科毕业设计（论文）}
+    \fancyhead[C]{\heiti\color[gray]{0.55}西南交通大学本科毕业设计（论文）}
     \fancyhead[R]{}
+}
+
+% 重新定义目录名
+\renewcommand{\contentsname}{\heiti\Large 目\hspace{10bp}录}
+
+% 设置章节格式
+\setcounter{secnumdepth}{3}
+\ctexset{
+    chapter = {
+        format = \centering\heiti\Large,
+        name = {第,章},
+        number = \thechapter,
+        aftername = \enspace,
+        beforeskip = -15bp,
+        afterskip = 20bp
+    },
+    section = {
+        format = \heiti\large,
+        numberformat = \arial\large,
+        aftername = \hspace{4bp},
+        indent = 0pt
+    },
+    subsection = {
+        format = \heiti\zihao{4},
+        numberformat = \timesnewroman\zihao{4},
+        aftername = \hspace{4bp},
+        indent = 0pt
+    },
+    subsubsection = {
+        format = \heiti,
+        numbering = true,
+        numberformat = \timesnewroman,
+        aftername = \hspace{4bp}
+    }
 }
 
 % 标题页
@@ -43,19 +80,18 @@
 \newcommand\@instructor{\@latex@error{No \noexpand\instructor given}\@ehc}
 \newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
 \newcommand{\maketitlepage}{
-    \heiti
     \begin{titlepage}
     \vspace*{\stretch{1}}
     \begin{center}
         {
-            \LARGE\ctexset{space=true}
-            西 南 交 通 大 学\\[18bp] % CTeX小二字号大小
+            \heiti\Large\ctexset{space=true}
+            西 南 交 通 大 学\\[18bp]
             本科毕业设计（论文）\\[18bp]
         }
         \vfill
         % 论文题目
         {
-            \huge
+            \heiti\LARGE
             \begin{tabular}{C{12cm}}
                 \@title
             \end{tabular}
@@ -63,7 +99,6 @@
         \vspace{\stretch{3}}
         % 个人信息
         {
-            \large
             \begin{tabular}{ll}
                 年\hspace{24bp}级： &   \underline{\@grade}   \\[12bp]
                 学\hspace{24bp}号： &   \underline{\@stunum}  \\[12bp]
@@ -76,7 +111,6 @@
         \vspace{\stretch{2}}
         % 当前日期
         {
-            \large
             \zhdigits *{\the\year}年\zhdigits *{\the\month}月
         }
     \end{center}
@@ -90,21 +124,22 @@
 \newcommand{\makeais} {
     \begin{center}
         {
-            \heiti\LARGE
+            \heiti\Large
             西南交通大学\\[18bp]
             本科毕业设计（论文）学术诚信声明\\[18bp]
         }
     \end{center}
     \vspace{\stretch{1}}
     \begin{spacing}{1.6}
-        \songti\zihao{4}
-        本人郑重声明：所呈交的毕业设计（论文），是本人在导师的指导下，独立进行研究工作所取得的成果。除文中已经注明引用的内容外，本论文不包含任何其他个人或集体已经发表或撰写过的作品成果。对本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。本人完全意识到本声明的法律结果由本人承担。
+        {
+            \songti\zihao{4} 
+            本人郑重声明：所呈交的毕业设计（论文），是本人在导师的指导下，独立进行研究工作所取得的成果。除文中已经注明引用的内容外，本论文不包含任何其他个人或集体已经发表或撰写过的作品成果。对本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。本人完全意识到本声明的法律结果由本人承担。
+        }
     \end{spacing}
-    \songti\zihao{4}
     \vspace{\stretch{5}}
-        \rightline{作者签名：\hspace{156bp}}
+        \rightline{\songti\zihao{4}作者签名：\hspace{156bp}}
     \vspace{\stretch{1}}
-        \rightline{日期：\hspace{36bp}年\hspace{24bp}月\hspace{24bp}日\hspace{60bp}}
+        \rightline{\songti\zihao{4}日期：\hspace{36bp}年\hspace{24bp}月\hspace{24bp}日\hspace{60bp}}
     \vspace{\stretch{3}}
     \thispagestyle{empty}
     \clearpage\mbox{}\thispagestyle{empty}\clearpage
@@ -117,31 +152,38 @@
     \thispagestyle{empty}
     \begin{center}
         {
-            \heiti\LARGE
+            \heiti\Large
             西南交通大学\\[18bp]
             本科毕业设计（论文）版权使用授权书\\[18bp]
         }
     \end{center}
     \vspace{\stretch{1}}
     \begin{spacing}{1.6}
-        \songti\zihao{4}
-        本毕业设计（论文）作者同意学校保留并向国家有关部门或机构送交论文的复印件和电子版，允许论文被查阅和借阅。本人授权西南交通大学可以将本毕业设计（论文）的全部或部分内容编入有关数据库进行检索，可以采用影印、缩印或扫描等复制手段保存和汇编本毕业设计（论文）。
+        {
+            \zihao{4}
+            本毕业设计（论文）作者同意学校保留并向国家有关部门或机构送交论文的复印件和电子版，允许论文被查阅和借阅。本人授权西南交通大学可以将本毕业设计（论文）的全部或部分内容编入有关数据库进行检索，可以采用影印、缩印或扫描等复制手段保存和汇编本毕业设计（论文）。
+        }
     \end{spacing}
     \begin{spacing}{2.3}
-        \songti\zihao{4}
-        \hspace*{\stretch{7}} \textbf{保密}$\square$，在\rule[-2pt]{1.5cm}{0.3pt}年解密后适用本授权书。 \hspace{\stretch{2}}
-        \newline
-        \hspace*{\stretch{1}} 本论文属于 \hspace{\stretch{7}}
-        \newline
-        \hspace*{\stretch{7}} \textbf{不保密}$\square$。\hspace{\stretch{12}}
-        \newline
-        \hspace*{\stretch{4}}（请在以上方框内打“\checkmark”）\hspace{\stretch{19}}
+        {
+            \zihao{4}
+            \hspace*{\stretch{7}} \textbf{保密}$\square$，在\rule[-2pt]{1.5cm}{0.3pt}年解密后适用本授权书。 \hspace{\stretch{2}}
+            \newline
+            \hspace*{\stretch{1}} 本论文属于 \hspace{\stretch{7}}
+            \newline
+            \hspace*{\stretch{7}} \textbf{不保密}$\square$。\hspace{\stretch{12}}
+            \newline
+            \hspace*{\stretch{4}}（请在以上方框内打“\checkmark”）\hspace{\stretch{19}}
+        }
     \end{spacing}
     \vspace{\stretch{3}}
+    \begingroup
+    \zihao{4}
     \begin{tabular}{l@{\hskip 0.8in}l}
         作者签名：  &   指导老师签名：    \\[40bp]
         日期：\hspace{36bp}年\hspace{24bp}月\hspace{24bp}日 &   日期：\hspace{36bp}年\hspace{24bp}月\hspace{24bp}日\\
     \end{tabular}
+    \endgroup
     \vfill
     \cleardoublepage
 }
@@ -172,19 +214,18 @@
 \newcommand{\makefrontmatter}{
     \pagestyle{plain}
     \fancyfoot[C]{}
-    \songti\large
     \null
 
-    \hskip -1.1cm
+    \hskip -1.05cm
     \begin{tabular}{l@{\hskip 0.3in}l}
         院系 \underlinebox{6.2cm}{c}{\@department}    &   专业 \underlinebox{6.2cm}{c}{} \\
         年级 \underlinebox{6.2cm}{c}{\@grade} &   姓名 \underlinebox{6.2cm}{c}{}\\
     \end{tabular}
-    \newline\newline\newline
-    题目 \underlinebox{14.4cm}{c}{}
     \newline\newline
+    题目 \underlinebox{14.4cm}{c}{}
+    \newline
 
-    \hskip -1.1cm
+    \hskip -1.05cm
     \begin{tabular}{l@{\hskip 0.1in}l}
         指导教师            &   \\[6bp]
         评\hspace{24bp}语   &   \underlinebox{13.6cm}{c}{}\\[10bp]
@@ -195,9 +236,8 @@
                             &   \underlinebox{13.6cm}{c}{}\\[10bp]
                             &   \multicolumn{1}{r}{指导教师 \underlinebox{4cm}{c}{}(签章)}\\[10bp]
     \end{tabular}
-    \newline\newline
 
-    \hskip -1.1cm
+    \hskip -1.05cm
     \begin{tabular}{l@{\hskip 0.1in}l}
         评\hspace{6bp}阅\hspace{6bp}人            &   \\[6bp]
         评\hspace{24bp}语   &   \underlinebox{13.6cm}{c}{}\\[10bp]
@@ -208,7 +248,7 @@
                             &   \underlinebox{13.6cm}{c}{}\\[10bp]
                             &   \multicolumn{1}{r}{评\hspace{6bp}阅\hspace{6bp}人 \underlinebox{4cm}{c}{}(签章)}\\[10bp]
     \end{tabular}
-    \newline\newline
+    \newline\newline\newline
     成\hspace{24bp}绩 \underlinebox{5.5cm}{c}{}\\[12bp]
     答辩委员会主任 \underlinebox{4.25cm}{c}{}(签章)\\[12bp]
     \rightline{年\hspace{20bp}月\hspace{20bp}日}
@@ -221,13 +261,12 @@
     \fancyfoot[C]{\color[gray]{0.55}第 \thepage\ 页}
 
     % 毕设设计任务书
-    \titleformat{\chapter}[display]
-        {\centering\heiti\bfseries\zihao{3}}
-        {}{}{}
-    \titlespacing*{\chapter}{0pt}{-15pt}{16.06pt}
-    \chapter{毕业设计（论文）任务书}
+    {
+        \mbox{}\\
+        \heiti\zihao{3}\bfseries
+        \centerline{毕业设计（论文）任务书}
+    }
     \begin{spacing}{1.7}
-        \songti\large
         \noindent 班\hspace{24bp}级 \underlinebox{3cm}{c}{\@class}
         学生姓名 \underlinebox{3cm}{c}{\@author}
         学\hspace{24bp}号 \underlinebox{3.5cm}{c}{\@stunum}
@@ -235,7 +274,6 @@
         \newline 题\hspace{24bp}目 \underlinebox{13.6cm}{c}{\@title}\newline
     \end{spacing}
     \vskip -0.5cm
-    \songti\large
     \noindent 1、本论文的目的、意义\\
     \begin{spacing}{1}
         \noindent\underlinebox{16cm}{c}{}
@@ -251,7 +289,6 @@
     \noindent 2、学生应完成的任务\\
     \begin{spacing}{1}
         \noindent\underlinebox{16cm}{c}{}
-        \newline\underlinebox{16cm}{c}{}
         \newline\underlinebox{16cm}{c}{}
         \newline\underlinebox{16cm}{c}{}
         \newline\underlinebox{16cm}{c}{}
@@ -301,24 +338,29 @@
     \ifthispageodd{\cleardoublepage}{\clearpage}
 
     % 摘要
-    \titleformat{\chapter}[display]
-        {\centering\heiti\LARGE}
-        {}{}{}
-    \titlespacing*{\chapter}{0pt}{-15pt}{16.06pt}
-    \chapter{摘\hspace{6bp}要}
-    \songti\large
+    {
+        \mbox{}\newline
+        \centerline{\heiti\Large 摘\hspace{6bp}要}
+        \mbox{}\newline
+    }
     \hspace*{24bp}\@abstract\\
     \par
-    \noindent {\heiti\large 关键词：}\@keywords
+    \noindent {\heiti 关键词：}\@keywords
+    \clearpage
 
     % 英文摘要
-    \titleformat{\chapter}[display]
-        {\centering\LARGE}
-        {}{}{}
-    \titlespacing*{\chapter}{0pt}{-15pt}{16.06pt}
-    \chapter{Abstract}
+    {
+        \mbox{}\newline
+        \centerline{\heiti\Large Abstract}
+        \mbox{}\newline
+    }
     \hspace*{24bp}\@enabstract\\
     \par
-    \noindent {\large\bfseries Keywords:}\@enkeywords
+    \noindent {\bfseries Keywords:}\@enkeywords
     \clearpage
+
+    \tableofcontents
+    \clearpage
+    \pagenumbering{arabic}
+    \mainmatter
 }
