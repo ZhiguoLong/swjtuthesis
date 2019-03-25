@@ -19,6 +19,7 @@
 \RequirePackage{fancyhdr}
 \RequirePackage{color}
 \RequirePackage{scrextend}
+\RequirePackage{titletoc}
 
 \geometry{a4paper,left=2.7cm,right=2.7cm,top=2.6cm,bottom=2.6cm}
 
@@ -35,6 +36,24 @@
 
 % 重新定义目录名
 \renewcommand{\contentsname}{\heiti\Large 目\hspace{10bp}录}
+\titlecontents{chapter}
+    [3.8em]{\vspace{0.5em}}
+    {\heiti\contentslabel{3.5em}}
+    {\hspace*{-2.3em}}
+    {\titlerule*[0.3pc]{.}\contentspage}
+    [\vspace{0.5em}]
+
+\titlecontents{section}
+    [3.8em]{}
+    {\songti\contentslabel{1.5em}}
+    {\hspace*{-2.3em}}
+    {\titlerule*[0.3pc]{.}\contentspage}
+
+\titlecontents{subsection}
+    [6.2em]{}
+    {\songti\contentslabel{2.3em}}
+    {\hspace*{-2.3em}}
+    {\titlerule*[0.3pc]{.}\contentspage}
 
 % 设置章节格式
 \setcounter{secnumdepth}{3}
