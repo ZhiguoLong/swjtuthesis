@@ -2,14 +2,6 @@
 \ProvidesClass{swjtuthesis}
 
 \LoadClass[UTF8,openany,zihao=-4]{ctexbook}
-% TO UPDATE, just a workaround
-\setCJKfamilyfont{zhhei}[AutoFakeBold]{SimHei}
-\setCJKfamilyfont{zhsong}[AutoFakeBold]{SimSun}
-\setCJKmainfont{SimSun}
-\setmainfont{Times New Roman}
-\setsansfont{Arial}
-\newfontfamily\arial{Arial}
-\newfontfamily\timesnewroman{Times New Roman}
 
 \RequirePackage{array}
 \RequirePackage{zhnumber}
@@ -20,6 +12,17 @@
 \RequirePackage{color}
 \RequirePackage{scrextend}
 \RequirePackage{titletoc}
+\RequirePackage{ifplatform}
+
+\ifwindows
+    \setCJKfamilyfont{zhhei}[AutoFakeBold]{SimHei}
+    \setCJKfamilyfont{zhsong}[AutoFakeBold]{SimSun}
+    \setCJKmainfont{SimSun}
+\fi
+\setmainfont{Times New Roman}
+\setsansfont{Arial}
+\newfontfamily\arial{Arial}
+\newfontfamily\timesnewroman{Times New Roman}
 
 \geometry{a4paper,left=2.7cm,right=2.7cm,top=2.6cm,bottom=2.6cm}
 
