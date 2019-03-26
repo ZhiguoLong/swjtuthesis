@@ -13,6 +13,19 @@
 \RequirePackage{scrextend}
 \RequirePackage{titletoc}
 \RequirePackage{ifplatform}
+\RequirePackage{fontspec}
+\RequirePackage[backend=biber, sorting=none, maxnames=99,
+                style=gb7714-2015, gbnamefmt=lowercase,
+                gbpub=false, gbfieldtype=true, gbpunctin=false]
+                {biblatex}
+
+% 定义参考文献类型字段
+\DefineBibliographyStrings{english}{in={}}
+\DefineBibliographyStrings{english}{incn={}}
+\DefineBibliographyStrings{english}{mathesis={Master Thesis}}
+\DefineBibliographyStrings{english}{phdthesis={Doctor Thesis}}
+\DefineBibliographyStrings{english}{mathesiscn={硕士论文}}
+\DefineBibliographyStrings{english}{phdthesiscn={博士论文}}
 
 \ifwindows
     \setCJKfamilyfont{zhhei}[AutoFakeBold]{SimHei}
@@ -42,7 +55,7 @@
 \titlecontents{chapter}
     [3.8em]{\vspace{0.5em}}
     {\heiti\contentslabel{3.5em}}
-    {\hspace*{-2.3em}}
+    {\heiti\hspace*{-3.5em}}
     {\titlerule*[0.3pc]{.}\contentspage}
     [\vspace{0.5em}]
 
@@ -88,6 +101,22 @@
         aftername = \hspace{4bp}
     }
 }
+
+% 重定义上标引用使得含有方括号
+\DeclareCiteCommand{\supercite}[\mkbibsuperscript]
+    {\usebibmacro{cite:init}%
+        \let\multicitedelim=\supercitedelim
+        \iffieldundef{prenote}
+            {}
+            {\BibliographyWarning{Ignoring prenote argument}}%
+        \iffieldundef{postnote}
+            {}
+            {\BibliographyWarning{Ignoring postnote argument}}%
+    \bibopenbracket}%
+    {\usebibmacro{citeindex}%
+     \usebibmacro{cite:comp}}
+    {}
+    {\usebibmacro{cite:dump}\bibclosebracket}
 
 % 标题页
 \newcommand\grade[1]{\renewcommand\@grade{#1}}
@@ -385,4 +414,9 @@
     \clearpage
     \pagenumbering{arabic}
     \mainmatter
+}
+
+\newcommand{\makebackmatter}{%
+    \backmatter
+    \printbibliography[title=参考文献, heading=bibintoc]
 }
