@@ -14,6 +14,9 @@
 \RequirePackage{titletoc}
 \RequirePackage{ifplatform}
 \RequirePackage{fontspec}
+\RequirePackage{graphicx}
+\RequirePackage{float}
+\RequirePackage{caption}
 \RequirePackage[backend=biber, sorting=none, maxnames=99,
                 style=gb7714-2015, gbnamefmt=lowercase,
                 gbpub=false, gbfieldtype=true, gbpunctin=false]
@@ -117,6 +120,14 @@
      \usebibmacro{cite:comp}}
     {}
     {\usebibmacro{cite:dump}\bibclosebracket}
+
+% 定义图表名格式
+\captionsetup{
+    labelsep = space,
+    font = small
+}
+\renewcommand{\thefigure}{\thechapter-\arabic{figure}}
+\renewcommand{\thetable}{\thechapter-\arabic{table}}
 
 % 标题页
 \newcommand\grade[1]{\renewcommand\@grade{#1}}
