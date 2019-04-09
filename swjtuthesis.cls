@@ -129,6 +129,10 @@
 \renewcommand{\thefigure}{\thechapter-\arabic{figure}}
 \renewcommand{\thetable}{\thechapter-\arabic{table}}
 
+% 表格元素间距
+\setlength{\tabcolsep}{18pt}
+\renewcommand{\arraystretch}{1.5}
+
 % 标题页
 \newcommand\grade[1]{\renewcommand\@grade{#1}}
 \newcommand\@grade{\@latex@error{No \noexpand\grade given}\@ehc}
