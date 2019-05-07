@@ -17,6 +17,7 @@
 \RequirePackage{graphicx}
 \RequirePackage{float}
 \RequirePackage{caption}
+\RequirePackage{amsmath}
 \RequirePackage[backend=biber, sorting=none, maxnames=99,
                 style=gb7714-2015, gbnamefmt=lowercase,
                 gbpub=false, gbfieldtype=true, gbpunctin=false]
@@ -132,6 +133,9 @@
 % 表格元素间距
 \setlength{\tabcolsep}{18pt}
 \renewcommand{\arraystretch}{1.5}
+
+% 公式编号格式
+\renewcommand{\theequation}{\thechapter-\arabic{equation}}
 
 % 标题页
 \newcommand\grade[1]{\renewcommand\@grade{#1}}
