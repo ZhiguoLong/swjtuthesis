@@ -45,11 +45,11 @@
 % 页眉设置
 % 重新定义 plain 格式，包含页眉
 \let\oldheadrule\headrule
-\renewcommand{\headrule}{\color[gray]{0.55}\oldheadrule}
+\renewcommand{\headrule}{\oldheadrule}
 \renewcommand{\headrulewidth}{1.8pt}
 \fancypagestyle{plain}{
     \fancyhead[L]{}
-    \fancyhead[C]{\heiti\color[gray]{0.55}西南交通大学本科毕业设计（论文）}
+    \fancyhead[C]{\heiti 西南交通大学本科毕业设计（论文）}
     \fancyhead[R]{}
 }
 
@@ -280,9 +280,8 @@
 \newcommand{\makefrontmatter}{
     \pagestyle{plain}
     \fancyfoot[C]{}
-    \null
 
-    \hskip -1.05cm
+    \hskip -1.46cm
     \begin{tabular}{l@{\hskip 0.3in}l}
         院系 \underlinebox{6.2cm}{c}{\@department}    &   专业 \underlinebox{6.2cm}{c}{} \\
         年级 \underlinebox{6.2cm}{c}{\@grade} &   姓名 \underlinebox{6.2cm}{c}{}\\
@@ -291,27 +290,25 @@
     题目 \underlinebox{14.4cm}{c}{}
     \newline
 
-    \hskip -1.05cm
+    \hskip -1.46cm
     \begin{tabular}{l@{\hskip 0.1in}l}
         指导教师            &   \\[6bp]
-        评\hspace{24bp}语   &   \underlinebox{13.6cm}{c}{}\\[10bp]
-                            &   \underlinebox{13.6cm}{c}{}\\[10bp]
-                            &   \underlinebox{13.6cm}{c}{}\\[10bp]
-                            &   \underlinebox{13.6cm}{c}{}\\[10bp]
-                            &   \underlinebox{13.6cm}{c}{}\\[10bp]
-                            &   \underlinebox{13.6cm}{c}{}\\[10bp]
+        评\hspace{24bp}语   &   \underlinebox{13.6cm}{c}{}\\[6bp]
+                            &   \underlinebox{13.6cm}{c}{}\\[6bp]
+                            &   \underlinebox{13.6cm}{c}{}\\[6bp]
+                            &   \underlinebox{13.6cm}{c}{}\\[6bp]
+                            &   \underlinebox{13.6cm}{c}{}\\[6bp]
                             &   \multicolumn{1}{r}{指导教师 \underlinebox{4cm}{c}{}(签章)}\\[10bp]
     \end{tabular}
 
-    \hskip -1.05cm
+    \hskip -1.46cm
     \begin{tabular}{l@{\hskip 0.1in}l}
         评\hspace{6bp}阅\hspace{6bp}人            &   \\[6bp]
-        评\hspace{24bp}语   &   \underlinebox{13.6cm}{c}{}\\[10bp]
-                            &   \underlinebox{13.6cm}{c}{}\\[10bp]
-                            &   \underlinebox{13.6cm}{c}{}\\[10bp]
-                            &   \underlinebox{13.6cm}{c}{}\\[10bp]
-                            &   \underlinebox{13.6cm}{c}{}\\[10bp]
-                            &   \underlinebox{13.6cm}{c}{}\\[10bp]
+        评\hspace{24bp}语   &   \underlinebox{13.6cm}{c}{}\\[6bp]
+                            &   \underlinebox{13.6cm}{c}{}\\[6bp]
+                            &   \underlinebox{13.6cm}{c}{}\\[6bp]
+                            &   \underlinebox{13.6cm}{c}{}\\[6bp]
+                            &   \underlinebox{13.6cm}{c}{}\\[6bp]
                             &   \multicolumn{1}{r}{评\hspace{6bp}阅\hspace{6bp}人 \underlinebox{4cm}{c}{}(签章)}\\[10bp]
     \end{tabular}
     \newline\newline\newline
