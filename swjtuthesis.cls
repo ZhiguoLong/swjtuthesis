@@ -137,6 +137,11 @@
 % 公式编号格式
 \renewcommand{\theequation}{\thechapter-\arabic{equation}}
 
+% 带下划线盒子
+\newcommand{\underlinebox}[3]{
+    \underline{\makebox[#1][#2]{#3}}
+}
+
 % 标题页
 \newcommand\grade[1]{\renewcommand\@grade{#1}}
 \newcommand\@grade{\@latex@error{No \noexpand\grade given}\@ehc}
@@ -151,7 +156,7 @@
 \newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
 \newcommand{\maketitlepage}{
     \begin{titlepage}
-    \vspace*{\stretch{1}}
+    \vspace*{\stretch{0.5}}
     \begin{center}
         {
             \heiti\Large\ctexset{space=true}
@@ -166,22 +171,24 @@
                 \@title
             \end{tabular}
         } \\
-        \vspace{\stretch{3}}
+        \vspace{\stretch{2}}
         % 个人信息
         {
+            \heiti
+            \setlength{\tabcolsep}{0.3em}
             \begin{tabular}{ll}
-                年\hspace{24bp}级： &   \underline{\@grade}   \\[12bp]
-                学\hspace{24bp}号： &   \underline{\@stunum}  \\[12bp]
-                姓\hspace{24bp}名： &   \underline{\@author}  \\[12bp]
-                专\hspace{24bp}业： &   \underline{\@major}   \\[12bp] 
-                指导老师：  &   \underline{\@instructor}    \\[12bp]
+                年\hspace{24bp}级： & \underlinebox{4cm}{c}{\@grade}   \\
+                学\hspace{24bp}号： & \underlinebox{4cm}{c}{\@stunum}  \\
+                姓\hspace{24bp}名： & \underlinebox{4cm}{c}{\@author}  \\
+                专\hspace{24bp}业： & \underlinebox{4cm}{c}{\@major}   \\
+                指导老师：  & \underlinebox{4cm}{c}{\@instructor}    \\
             \end{tabular}
 
         }
-        \vspace{\stretch{2}}
+        \vspace{\stretch{1.5}}
         % 当前日期
         {
-            \zhdigits *{\the\year}年\zhdigits *{\the\month}月
+            \heiti\zhdigits *{\the\year}年\zhdigits *{\the\month}月
         }
     \end{center}
     \vfill
@@ -278,9 +285,6 @@
 \newcommand\enkeywords[1]{\renewcommand\@enkeywords {#1}}
 \newcommand\@enkeywords{\@latex@error{No \noexpand\enkeywords given}\@ehc}
 
-\newcommand{\underlinebox}[3]{
-    \underline{\makebox[#1][#2]{#3}}
-}
 \newcommand{\makefrontmatter}{
     \pagestyle{plain}
     \fancyfoot[C]{}
