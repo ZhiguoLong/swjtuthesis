@@ -32,9 +32,9 @@
 \DefineBibliographyStrings{english}{phdthesiscn={博士论文}}
 
 \ifwindows
-    \setCJKfamilyfont{zhhei}[AutoFakeBold]{SimHei}
-    \setCJKfamilyfont{zhsong}[AutoFakeBold]{SimSun}
-    \setCJKmainfont{SimSun}
+    \setCJKfamilyfont{zhhei}[AutoFakeBold,AutoFakeSlant]{SimHei}
+    \setCJKfamilyfont{zhsong}[AutoFakeBold,AutoFakeSlant]{SimSun}
+    \setCJKmainfont[AutoFakeBold,AutoFakeSlant]{SimSun}
 \fi
 \setmainfont{Times New Roman}
 \setsansfont{Arial}
