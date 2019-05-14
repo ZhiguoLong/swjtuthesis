@@ -329,7 +329,7 @@
     \frontmatter
     \pagestyle{plain}
     \pagenumbering{Roman}
-    \fancyfoot[C]{\color[gray]{0.55}第 \thepage\ 页}
+    \fancyfoot[C]{第 \thepage\ 页}
 
     % 毕设设计任务书
     {
@@ -409,14 +409,19 @@
     \ifthispageodd{\cleardoublepage}{\clearpage}
 
     % 摘要
+    % TODO:取消之前的空白页页码计数
     {
         \mbox{}\newline
         \centerline{\heiti\Large 摘\hspace{6bp}要}
         \mbox{}\newline
     }
-    \hspace*{24bp}\@abstract\\
-    \par
-    \noindent {\heiti 关键词：}\@keywords
+    {
+        % TODO: 段落间距需要调整
+        %\setlength{\baselineskip}{20pt}
+        \hspace*{24bp}\@abstract\\
+        \par
+        \noindent {\heiti 关键词：}\@keywords
+    }
     \clearpage
 
     % 英文摘要
