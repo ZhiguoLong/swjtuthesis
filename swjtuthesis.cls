@@ -12,7 +12,6 @@
 \RequirePackage{color}
 \RequirePackage{scrextend}
 \RequirePackage{titletoc}
-\RequirePackage{ifplatform}
 \RequirePackage{fontspec}
 \RequirePackage{graphicx}
 \RequirePackage{float}
@@ -31,11 +30,38 @@
 \DefineBibliographyStrings{english}{mathesiscn={硕士论文}}
 \DefineBibliographyStrings{english}{phdthesiscn={博士论文}}
 
-\ifwindows
+% https://github.com/ustctug/ustcthesis/blob/6b2cd0c1f0cafa08d7d6cec927dbb73bad38ddc9/ustcthesis.cls#L88
+\newcommand\strifeq{\csname str_if_eq_x:nnTF\endcsname}
+\newcommand\fontset{\csname g__ctex_fontset_tl\endcsname}
+\strifeq{\fontset}{fandol}{
+    \setmainfont[
+      Extension      = .otf,
+      UprightFont    = *-regular,
+      BoldFont       = *-bold,
+      ItalicFont     = *-italic,
+      BoldItalicFont = *-bolditalic,
+    ]{texgyretermes}
+    \setsansfont[
+      Extension      = .otf,
+      UprightFont    = *-regular,
+      BoldFont       = *-bold,
+      ItalicFont     = *-italic,
+      BoldItalicFont = *-bolditalic,
+    ]{texgyreheros}
+    \setmonofont[
+      Extension      = .otf,
+      UprightFont    = *-regular,
+      BoldFont       = *-bold,
+      ItalicFont     = *-italic,
+      BoldItalicFont = *-bolditalic,
+      Scale          = MatchLowercase,
+    ]{texgyrecursor}
+}{}
+\strifeq{\fontset}{windows}{
     \setCJKfamilyfont{zhhei}[AutoFakeBold,AutoFakeSlant]{SimHei}
     \setCJKfamilyfont{zhsong}[AutoFakeBold,AutoFakeSlant]{SimSun}
     \setCJKmainfont[AutoFakeBold,AutoFakeSlant]{SimSun}
-\fi
+}{}
 \setmainfont{Times New Roman}
 \setsansfont{Arial}
 \newfontfamily\arial{Arial}
