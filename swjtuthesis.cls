@@ -30,6 +30,7 @@
 \DefineBibliographyStrings{english}{mathesiscn={硕士论文}}
 \DefineBibliographyStrings{english}{phdthesiscn={博士论文}}
 
+% 根据平台设置字体
 % https://github.com/ustctug/ustcthesis/blob/6b2cd0c1f0cafa08d7d6cec927dbb73bad38ddc9/ustcthesis.cls#L88
 \newcommand\strifeq{\csname str_if_eq_x:nnTF\endcsname}
 \newcommand\fontset{\csname g__ctex_fontset_tl\endcsname}
@@ -223,7 +224,6 @@
 }
 
 % 学术诚信声明
-
 \newcommand{\makeais} {
     \begin{center}
         {
@@ -250,7 +250,6 @@
 
 
 % 版权使用授权书
-
 \newcommand{\makecua} {
     \thispagestyle{empty}
     \begin{center}
@@ -291,9 +290,7 @@
     \cleardoublepage
 }
 
-
-
-% 前言部分
+% 教师评估页
 \newcommand\department[1]{\renewcommand\@department{#1}}
 \newcommand\@department{\@latex@error{No \noexpand\department given}\@ehc}
 \newcommand\class[1]{\renewcommand\@class{#1}}
@@ -302,16 +299,7 @@
 \newcommand\@taskstartdate{\@latex@error{No \noexpand\taskstartdate given}\@ehc}
 \newcommand\taskenddate[1]{\renewcommand\@taskenddate {#1}}
 \newcommand\@taskenddate{\@latex@error{No \noexpand\taskenddate given}\@ehc}
-\newcommand\abstract[1]{\renewcommand\@abstract {#1}}
-\newcommand\@abstract{\@latex@error{No \noexpand\abstract given}\@ehc}
-\newcommand\keywords[1]{\renewcommand\@keywords {#1}}
-\newcommand\@keywords{\@latex@error{No \noexpand\keywords given}\@ehc}
-\newcommand\enabstract[1]{\renewcommand\@enabstract {#1}}
-\newcommand\@enabstract{\@latex@error{No \noexpand\enabstract given}\@ehc}
-\newcommand\enkeywords[1]{\renewcommand\@enkeywords {#1}}
-\newcommand\@enkeywords{\@latex@error{No \noexpand\enkeywords given}\@ehc}
-
-\newcommand{\makefrontmatter}{
+\newcommand{\makeevaluatepage}{
     \pagestyle{plain}
     \fancyfoot[C]{}
 
@@ -350,123 +338,58 @@
     答辩委员会主任 \underlinebox{4.25cm}{c}{}(签章)\\[12bp]
     \rightline{年\hspace{20bp}月\hspace{20bp}日}
     \cleardoublepage
+}
 
-    % ------------ 前言部分开始 ------------ %
-    \frontmatter
+% 开始摘要前设置
+\newcommand{\startabstract}{%
     \pagestyle{plain}
     \pagenumbering{Roman}
     \fancyfoot[C]{第 \thepage\ 页}
-
-    % 毕设设计任务书
-    {
-        \mbox{}\\
-        \heiti\zihao{3}\bfseries
-        \centerline{毕业设计（论文）任务书}
-    }
-    \begin{spacing}{1.7}
-        \noindent 班\hspace{24bp}级 \underlinebox{3cm}{c}{\@class}
-        学生姓名 \underlinebox{3cm}{c}{\@author}
-        学\hspace{24bp}号 \underlinebox{3.5cm}{c}{\@stunum}
-        \newline 发题日期：\@taskstartdate \hspace{\stretch{20}} 完成日期：\@taskenddate \hspace{\stretch{1}}
-        \newline 题\hspace{24bp}目 \underlinebox{13.6cm}{c}{\@title}\newline
-    \end{spacing}
-    \vskip -0.5cm
-    \noindent 1、本论文的目的、意义\\
-    \begin{spacing}{1}
-        \noindent\underlinebox{16cm}{c}{}
-        \newline\underlinebox{16cm}{c}{}
-        \newline\underlinebox{16cm}{c}{}
-        \newline\underlinebox{16cm}{c}{}
-        \newline\underlinebox{16cm}{c}{}
-        \newline\underlinebox{16cm}{c}{}
-        \newline\underlinebox{16cm}{c}{}
-        \newline\underlinebox{16cm}{c}{}
-    \end{spacing}
-    \vskip 0.3cm
-    \noindent 2、学生应完成的任务\\
-    \begin{spacing}{1}
-        \noindent\underlinebox{16cm}{c}{}
-        \newline\underlinebox{16cm}{c}{}
-        \newline\underlinebox{16cm}{c}{}
-        \newline\underlinebox{16cm}{c}{}
-        \newline\underlinebox{16cm}{c}{}
-        \newline\underlinebox{16cm}{c}{}
-        \newline\underlinebox{16cm}{c}{}
-        \newline\underlinebox{16cm}{c}{}
-    \end{spacing}
-    \clearpage
-
-    \noindent 3、本论文与本专业的培养目标达成度如何？（如在知识结构、能力结构、素质结构等方面有哪些有效的训练。）\\
-    \begin{spacing}{1}
-        \noindent\underlinebox{16cm}{c}{}
-        \newline\underlinebox{16cm}{c}{}
-        \newline\underlinebox{16cm}{c}{}
-        \newline\underlinebox{16cm}{c}{}
-        \newline\underlinebox{16cm}{c}{}
-        \newline\underlinebox{16cm}{c}{}
-        \newline\underlinebox{16cm}{c}{}
-        \newline\underlinebox{16cm}{c}{}
-        \newline\underlinebox{16cm}{c}{}
-        \newline\underlinebox{16cm}{c}{}
-        \newline\underlinebox{16cm}{c}{}
-        \newline\underlinebox{16cm}{c}{}
-        \newline\underlinebox{16cm}{c}{}
-        \newline\underlinebox{16cm}{c}{}
-        \newline\underlinebox{16cm}{c}{}
-        \newline\underlinebox{16cm}{c}{}
-        \newline\underlinebox{16cm}{c}{}
-        \newline\underlinebox{16cm}{c}{}
-        \newline\underlinebox{16cm}{c}{}
-    \end{spacing}
-
-    \noindent 4、论文各部分内容及时间分配：（共17周）\\
-    \begin{spacing}{1.5}
-        \noindent\hspace{18bp}第一部分 \underlinebox{12cm}{c}{}(  周)
-        \newline\hspace*{18bp}第二部分 \underlinebox{12cm}{c}{}(  周)
-        \newline\hspace*{18bp}第三部分 \underlinebox{12cm}{c}{}(  周)
-        \newline\hspace*{18bp}第四部分 \underlinebox{12cm}{c}{}(  周)
-        \newline\hspace*{18bp}第五部分 \underlinebox{12cm}{c}{}(  周)
-        \newline\hspace*{18bp}评阅及答辩 \underlinebox{11.5cm}{c}{}(1 周)
-        \newline 备\hspace{24bp}注\underlinebox{13.7cm}{c}{}
-        \newline\underlinebox{15cm}{c}{}
-        \newline\newline 指导老师：\underlinebox{4cm}{c}{}\hspace{12bp}\@taskstartdate
-        \newline\newline 审\hspace{6bp}批\hspace{6bp}人：\underlinebox{4cm}{c}{}\hspace{12bp}\@taskenddate
-    \end{spacing}
-    \ifthispageodd{\cleardoublepage}{\clearpage}
-
-    % 摘要
-    % TODO:取消之前的空白页页码计数
-    {
-        \mbox{}\newline
-        \centerline{\heiti\Large 摘\hspace{6bp}要}
-        \mbox{}\newline
-    }
-    {
-        % TODO: 段落间距需要调整
-        %\setlength{\baselineskip}{20pt}
-        \hspace*{24bp}\@abstract\\
-        \par
-        \noindent {\heiti 关键词：}\@keywords
-    }
-    \clearpage
-
-    % 英文摘要
-    {
-        \mbox{}\newline
-        \centerline{\heiti\Large Abstract}
-        \mbox{}\newline
-    }
-    \hspace*{24bp}\@enabstract\\
-    \par
-    \noindent {\bfseries Keywords:}\@enkeywords
-    \clearpage
-
-    \tableofcontents
-    \clearpage
-    \pagenumbering{arabic}
-    \mainmatter
 }
 
+% 中文摘要
+\newcommand\keywords[1]{\renewcommand\@keywords {#1}}
+\newcommand\@keywords{\@latex@error{No \noexpand\keywords given}\@ehc}
+\newenvironment{abstract}{%
+    \mbox{}\newline
+    \centerline{\heiti\Large 摘\hspace{6bp}要}
+    \mbox{}\newline
+    \hspace*{24bp}
+    % TODO: 段落间距需要调整
+    %\setlength{\baselineskip}{20pt}
+}{%
+    \newline\newline \noindent {\heiti 关键词：}\@keywords
+    \clearpage
+}
+
+% 英文摘要
+\newcommand\enkeywords[1]{\renewcommand\@enkeywords {#1}}
+\newcommand\@enkeywords{\@latex@error{No \noexpand\enkeywords given}\@ehc}
+\newenvironment{enabstract}{%
+    \mbox{}\newline
+    \centerline{\heiti\Large Abstract}
+    \mbox{}\newline
+    \hspace*{24bp}
+}{%
+    \newline\newline \noindent {\bfseries Keywords:}\@enkeywords
+    \clearpage
+}
+
+% 目录页
+\newcommand{\maketot}{%
+    \pagestyle{plain}
+    \tableofcontents
+    \clearpage
+}
+
+% 开始正文前设置
+\newcommand{\startmainmatter}{%
+    \pagestyle{plain}
+    \pagenumbering{arabic}
+    \fancyfoot[C]{第 \thepage\ 页}
+}
+
+% 生成参考文献
 \newcommand{\makebackmatter}{%
     \backmatter
     \printbibliography[title=参考文献, heading=bibintoc]
