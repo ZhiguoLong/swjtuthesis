@@ -358,7 +358,7 @@
     % TODO: 段落间距需要调整
     %\setlength{\baselineskip}{20pt}
 }{%
-    \newline\newline \noindent {\heiti 关键词：}\@keywords
+    \leavevmode \newline \noindent {\heiti 关键词：}\@keywords
     \clearpage
 }
 
@@ -368,10 +368,9 @@
 \newenvironment{enabstract}{%
     \mbox{}\newline
     \centerline{\heiti\Large Abstract}
-    \mbox{}\newline
     \hspace*{24bp}
 }{%
-    \newline\newline \noindent {\bfseries Keywords:}\@enkeywords
+    \leavevmode \newline \noindent {\bfseries Keywords: }\@enkeywords
     \clearpage
 }
 
