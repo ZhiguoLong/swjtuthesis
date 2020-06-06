@@ -5,6 +5,7 @@
 
 \RequirePackage{array}
 \RequirePackage{zhnumber}
+\RequirePackage{calc}
 \RequirePackage{geometry}
 \RequirePackage{setspace}
 \RequirePackage{amssymb}
@@ -21,6 +22,12 @@
                 style=gb7714-2015, gbnamefmt=lowercase,
                 gbpub=false, gbfieldtype=true, gbpunctin=false]
                 {biblatex}
+\RequirePackage{xeCJKfntef}
+\xeCJKsetup{underline/skip=false}
+\newlength{\ulineyshift}
+\setlength\ulineyshift{3\baselineskip}
+\addtolength\ulineyshift{0.3em}
+
 
 % 定义参考文献类型字段
 \DefineBibliographyStrings{english}{in={}}
@@ -32,7 +39,16 @@
 
 % 根据平台设置字体
 % https://github.com/ustctug/ustcthesis/blob/6b2cd0c1f0cafa08d7d6cec927dbb73bad38ddc9/ustcthesis.cls#L88
-\newcommand\strifeq{\csname str_if_eq_x:nnTF\endcsname}
+% \newcommand\strifeq{\csname str_if_eq_x:nnTF\endcsname}
+\newcommand\strifeq[4]{%
+  \edef\tmp@a{#1}%
+  \edef\tmp@b{#2}%
+  \ifx\tmp@a\tmp@b
+    #3%
+  \else
+    #4%
+  \fi
+}
 \newcommand\fontset{\csname g__ctex_fontset_tl\endcsname}
 \strifeq{\fontset}{fandol}{
     \setmainfont[
@@ -169,6 +185,33 @@
     \underline{\makebox[#1][#2]{#3}}
 }
 
+\newcommand\score[1]{\renewcommand\@score{#1}}
+\newcommand\@score{\@latex@error{No \noexpand\score given}\@ehc}
+\newcommand\taskpurpose[1]{\renewcommand\@taskpurpose{#1}}
+\newcommand\@taskpurpose{\@latex@error{No \noexpand\taskpurpose given}\@ehc}
+\newcommand\tasktodo[1]{\renewcommand\@tasktodo{#1}}
+\newcommand\@tasktodo{\@latex@error{No \noexpand\tasktodo given}\@ehc}
+\newcommand\taskachievement[1]{\renewcommand\@taskachievement{#1}}
+\newcommand\@taskachievement{\@latex@error{No \noexpand\taskachievement given}\@ehc}
+\newcommand\taskplana[2]{\renewcommand\@taskcontenta{#1}\renewcommand\@tasktimea{#2}}
+\newcommand\@taskcontenta{\@latex@error{No \noexpand\taskplana given}\@ehc}
+\newcommand\@tasktimea{\@latex@error{No \noexpand\taskplana given}\@ehc}
+\newcommand\taskplanb[2]{\renewcommand\@taskcontentb{#1} \renewcommand\@tasktimeb{#2}}
+\newcommand\@taskcontentb{}
+\newcommand\@tasktimeb{}
+\newcommand\taskplanc[2]{\renewcommand\@taskcontentc{#1} \renewcommand\@tasktimec{#2}}
+\newcommand\@taskcontentc{}
+\newcommand\@tasktimec{}
+\newcommand\taskpland[2]{\renewcommand\@taskcontentd{#1} \renewcommand\@tasktimed{#2}}
+\newcommand\@taskcontentd{}
+\newcommand\@tasktimed{}
+\newcommand\taskplane[2]{\renewcommand\@taskcontente{#1} \renewcommand\@tasktimee{#2}}
+\newcommand\@taskcontente{}
+\newcommand\@tasktimee{}
+\newcommand\taskplanl[1]{\renewcommand\@taskcontentl{#1}}
+\newcommand\@taskcontentl{\@latex@error{No \noexpand\taskplanl given}\@ehc}
+\newcommand\@tasktimel{\@latex@error{No \noexpand\taskplanl given}\@ehc}
+
 % 标题页
 \newcommand\grade[1]{\renewcommand\@grade{#1}}
 \newcommand\@grade{\@latex@error{No \noexpand\grade given}\@ehc}
@@ -204,11 +247,11 @@
             \heiti
             \setlength{\tabcolsep}{0.3em}
             \begin{tabular}{ll}
-                年\hspace{24bp}级： & \underlinebox{4cm}{c}{\@grade}   \\
-                学\hspace{24bp}号： & \underlinebox{4cm}{c}{\@stunum}  \\
-                姓\hspace{24bp}名： & \underlinebox{4cm}{c}{\@author}  \\
-                专\hspace{24bp}业： & \underlinebox{4cm}{c}{\@major}   \\
-                指导老师：  & \underlinebox{4cm}{c}{\@instructor}    \\
+                年\hspace{24bp}级： & \underlinebox{3cm}{c}{\@grade}   \\
+                学\hspace{24bp}号： & \underlinebox{3cm}{c}{\@stunum}  \\
+                姓\hspace{24bp}名： & \underlinebox{3cm}{c}{\@author}  \\
+                专\hspace{24bp}业： & \underlinebox{3cm}{c}{\@major}   \\
+                指导老师：  & \underlinebox{3cm}{c}{\@instructor}    \\
             \end{tabular}
 
         }
@@ -233,7 +276,7 @@
         }
     \end{center}
     \vspace{\stretch{1}}
-    \begin{spacing}{1.6}
+    \begin{spacing}{2}
         {
             \songti\zihao{4} 
             本人郑重声明：所呈交的毕业设计（论文），是本人在导师的指导下，独立进行研究工作所取得的成果。除文中已经注明引用的内容外，本论文不包含任何其他个人或集体已经发表或撰写过的作品成果。对本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。本人完全意识到本声明的法律结果由本人承担。
@@ -260,9 +303,9 @@
         }
     \end{center}
     \vspace{\stretch{1}}
-    \begin{spacing}{1.6}
+    \begin{spacing}{2.0}
         {
-            \zihao{4}
+            \songti\zihao{4}
             本毕业设计（论文）作者同意学校保留并向国家有关部门或机构送交论文的复印件和电子版，允许论文被查阅和借阅。本人授权西南交通大学可以将本毕业设计（论文）的全部或部分内容编入有关数据库进行检索，可以采用影印、缩印或扫描等复制手段保存和汇编本毕业设计（论文）。
         }
     \end{spacing}
@@ -305,11 +348,11 @@
 
     \hskip -1.46cm
     \begin{tabular}{l@{\hskip 0.3in}l}
-        院系 \underlinebox{6.2cm}{c}{\@department}    &   专业 \underlinebox{6.2cm}{c}{} \\
-        年级 \underlinebox{6.2cm}{c}{\@grade} &   姓名 \underlinebox{6.2cm}{c}{}\\
+        院系 \underlinebox{6.2cm}{c}{\@department}    &   专业 \underlinebox{6.2cm}{c}{\@major} \\
+        年级 \underlinebox{6.2cm}{c}{\@grade} &   姓名 \underlinebox{6.2cm}{c}{\@author}\\
     \end{tabular}
     \newline\newline
-    题目 \underlinebox{14.4cm}{c}{}
+    题目 \underlinebox{14.4cm}{c}{\@title}
     \newline
 
     \hskip -1.46cm
@@ -340,10 +383,112 @@
     \cleardoublepage
 }
 
+% 单独成绩页
+\newcommand{\makescorepage}{
+    \pagestyle{plain}
+    \fancyfoot[C]{}
+    \begin{center}
+        {
+            \heiti\Large
+            答辩成绩\\[18bp]
+        }
+    \end{center}
+    % \vspace{\stretch{1}}
+
+    \hskip -1.46cm
+    \begin{tabular}{l@{\hskip 0.3in}l}
+        院系 \underlinebox{6.2cm}{c}{\@department}    &   专业 \underlinebox{6.2cm}{c}{\@major} \\
+        年级 \underlinebox{6.2cm}{c}{\@grade} &   姓名 \underlinebox{6.2cm}{c}{\@author}\\
+    \end{tabular}
+    \newline\newline
+    题目 \underlinebox{14.4cm}{c}{\@title}
+    \newline
+    \newline
+    \hskip -1.46cm
+    \newline\newline
+    成\hspace{24bp}绩 \underlinebox{5.5cm}{c}{\@score}\\[12bp]
+    \newline\newline\newline
+    \rightline{答辩委员会主任 \underlinebox{4.25cm}{c}{}(签章)}\\[12bp]
+    \rightline{年\hspace{20bp}月\hspace{20bp}日}
+    \cleardoublepage
+}
+% 任务书
+\newcommand{\maketaskpage}{
+    \pagestyle{plain}
+    \pagenumbering{Roman}
+    \fancyfoot[C]{第 \thepage\ 页}
+    \begin{center}
+        {
+            \heiti\Large
+            毕业设计（论文）任务书\\[18bp]
+        }
+    \end{center}
+
+    \hskip -1.46cm
+    \begin{tabular}{l@{\hskip 0.01in}l@{\hskip 0.01in}l}
+        班\hspace{24bp}级 \underlinebox{4cm}{c}{\@class}    &   学生姓名 \underlinebox{2.5cm}{c}{\@author} & 学\hspace{24bp}号 \underlinebox{3cm}{c}{\@stunum}\\
+        \multicolumn{3}{l}{
+        发题日期：2020年11月22日 \hspace{1.7in}   完成日期：2021年5月30日
+        }\\
+        \multicolumn{3}{l}{
+    题\hspace{24bp}目 \underlinebox{13.7cm}{c}{\@title}
+        }\\
+    \end{tabular}
+    % \newline
+    % \newlength{\remaining}
+% \setlength{\remaining}{\textwidth-\widthof{\@taskpurpose}}
+
+\noindent 1、本设计（论文）的目的、意义
+
+\noindent\CJKunderline{\hspace{24bp}\@taskpurpose\hfill}
+    % \newline
+
+\noindent 2、学生应完成的任务
+
+% TODO enumerate each of the tasks and do \hfill here rather than in source
+\noindent\CJKunderline{\hspace{24bp}\@tasktodo\hfill}
+
+\noindent 3、本设计（论文）与本专业的毕业要求达成度如何？（如在知识结构、能力结构、素质结构等方面有哪些有效的训练。）
+
+% TODO store every major's here and choose automatically according to the major
+\noindent\CJKunderline{\hspace{24bp}\@taskachievement\hfill}
+
+\noindent 4、本设计（论文）各部分内容及时间分配：（共18周）
+
+\noindent 第一部分\CJKunderline{\hspace{24bp}\@taskcontenta\hfill}(\@tasktimea 周)
+
+\if\@taskcontentb\empty
+\else
+\noindent 第二部分\CJKunderline{\hspace{24bp}\@taskcontentb\hfill}(\@tasktimeb 周)
+\fi
+
+\if\@taskcontentc\empty
+\else
+\noindent 第三部分\CJKunderline{\hspace{24bp}\@taskcontentc\hfill}(\@tasktimec 周)
+\fi
+
+\if\@taskcontentd\empty
+\else
+\noindent 第四部分\CJKunderline{\hspace{24bp}\@taskcontentd\hfill}(\@tasktimed 周)
+\fi
+
+\if\@taskcontente\empty
+\else
+\noindent 第四部分\CJKunderline{\hspace{24bp}\@taskcontente\hfill}(\@tasktimee 周)
+\fi
+
+\noindent 评阅及答辩\CJKunderline{\hspace{12bp}\@taskcontentl\hfill}(1 周)
+\newline\newline
+\noindent 指导教师：\underlinebox{3cm}{c}{}\hspace{24bp} 2020年11月22日
+
+    \cleardoublepage
+}
+
+
 % 开始摘要前设置
 \newcommand{\startabstract}{%
     \pagestyle{plain}
-    \pagenumbering{Roman}
+    % \pagenumbering{Roman}
     \fancyfoot[C]{第 \thepage\ 页}
 }
 
@@ -358,7 +503,7 @@
     % TODO: 段落间距需要调整
     %\setlength{\baselineskip}{20pt}
 }{%
-    \leavevmode \newline \noindent {\heiti 关键词：}\@keywords
+    \leavevmode \newline\newline \noindent {\heiti 关键词：}\@keywords
     \clearpage
 }
 
@@ -368,9 +513,9 @@
 \newenvironment{enabstract}{%
     \mbox{}\newline
     \centerline{\heiti\Large Abstract}
-    \hspace*{24bp}
+    \hspace*{24bp}\newline
 }{%
-    \leavevmode \newline \noindent {\bfseries Keywords: }\@enkeywords
+    \leavevmode \newline\newline \noindent {\bfseries Keywords: }\@enkeywords
     \clearpage
 }
 
@@ -378,7 +523,7 @@
 \newcommand{\maketot}{%
     \pagestyle{plain}
     \tableofcontents
-    \clearpage
+    \cleardoublepage
 }
 
 % 开始正文前设置
